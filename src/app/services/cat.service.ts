@@ -13,7 +13,6 @@ export class CatService {
   constructor(private http: HttpClient) { }
 
   getCat(): Observable<Cat> {
-    console.log(this.apiUrl+'/catOfTheDay')
     return this.http.get<Cat>(this.apiUrl + '/catOfTheDay');
   }
 }
