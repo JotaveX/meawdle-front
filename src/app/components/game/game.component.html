@@ -1,0 +1,90 @@
+<div class="game-shell">
+  <div class="glass-card">
+    <header class="game-header">
+      <div class="brand">
+        <span class="pill">você está jogando</span>
+        <h1>🐱 MEAWDLE</h1>
+        <p class="subtitle">Adivinhe o nome do gato em até {{ maxAttempts }} tentativas.</p>
+      </div>
+      <div class="header-actions" *ngIf="!loading && !gameOver">
+        <div class="badge">Nome com <strong>{{ cat?.char_numero }}</strong> letras</div>
+      </div>
+    </header>
+
+    <div *ngIf="loading" class="status-block loading">
+      <span class="dot"></span> Carregando gato...
+    </div>
+
+    <div *ngIf="error" class="status-block error">
+      ⚠️ {{ error }}
+    </div>
+
+    <div *ngIf="cat && !loading" class="game-body">
+      <div class="media-panel">
+        <div class="image-frame">
+          <img [src]="cat.url_imagem" [alt]="'Gato misterioso'" class="cat-image">
+        </div>
+      </div>
+
+      <div class="board-panel">
+        <div class="guesses-container">
+          <div class="guess-row" *ngFor="let guess of guesses">
+            <div class="letter-box" *ngFor="let letterState of guess" [ngClass]="letterState.state">
+              {{ letterState.letter }}
+            </div>
+          </div>
+
+          <div class="guess-row live-row" *ngIf="!gameOver">
+            <div
+              class="letter-box live"
+              *ngFor="let _ of [].constructor(cat.char_numero); let i = index"
+              [class.filled]="currentGuess[i]">
+              {{ currentGuess[i] || '' }}
+            </div>
+          </div>
+
+          <div class="guess-row empty-row" *ngFor="let i of [].constructor(getRemainingAttempts())">
+            <div class="letter-box empty" *ngFor="let j of [].constructor(cat.char_numero)"></div>
+          </div>
+        </div>
+
+        <app-keyboard
+          *ngIf="!gameOver"
+          [usedLetters]="usedLetters"
+          (letterClicked)="onLetterClick($event)"
+          (enterClicked)="onEnterClick()"
+          (backspaceClicked)="onBackspaceClick()">
+        </app-keyboard>
+
+        <div *ngIf="gameOver" class="game-over">
+          <div *ngIf="won" class="victory">
+            <h2>🎉 Parabéns!</h2>
+            <p>Você acertou: <strong>{{ cat.nome.toUpperCase() }}</strong></p>
+            <p>Tentativas: {{ guesses.length }} / {{ maxAttempts }}</p>
+          </div>
+          <div *ngIf="!won" class="defeat">
+            <h2>😿 Não foi dessa vez</h2>
+            <p>O nome correto era <strong>{{ cat.nome.toUpperCase() }}</strong></p>
+          </div>
+        <button class="adoption-button" (click)="openAdoptionLink()">
+          🐾 Conheça este gato para adoção
+        </button>
+        </div>
+      </div>
+    </div>
+    <footer class="creator-footer">
+        <div class="divider"></div>
+        <p>Desenvolvido com 🐾 por <strong>João Piloni</strong></p>
+        <div class="social-links">
+          <a href="https://github.com/JotaveX" target="_blank" class="social-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/joaopiloni/" target="_blank" class="social-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            LinkedIn
+          </a>
+        </div>
+      </footer>
+  </div>
+</div>
