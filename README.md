@@ -1,27 +1,92 @@
-# MeawdleFront
+# 🐱 Meawdle Front
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.3.
+> Interface web da plataforma Meawdle — navegue por um catálogo de gatos disponíveis para adoção, com fotos, informações e links diretos para adotar.
 
-## Development server
+## 🚀 Stack
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+| Tecnologia | Uso |
+|---|---|
+| **Angular 18** | Framework frontend (standalone components) |
+| **TypeScript** | Tipagem estática |
+| **CSS** | Estilização customizada |
+| **Angular CLI** | Tooling de build e dev server |
 
-## Code scaffolding
+## 📦 Estrutura do projeto
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+meawdle-front/
+├── public/                  # Assets estáticos
+├── src/
+│   └── app/
+│       ├── components/      # Componentes da UI (cards, listagem, etc.)
+│       ├── config/          # Configurações (URLs da API, constantes)
+│       ├── models/          # Interfaces e tipos TypeScript
+│       ├── services/        # Services para comunicação com a API
+│       ├── app.component.*  # Componente raiz
+│       ├── app.config.ts    # Configuração standalone do Angular
+│       └── app.routes.ts    # Rotas da aplicação
+├── angular.json
+├── tsconfig.json
+└── package.json
+```
 
-## Build
+## ⚡ Como rodar
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Pré-requisitos
 
-## Running unit tests
+- Node.js >= 18
+- Angular CLI >= 18 (`npm install -g @angular/cli`)
+- [meawdle-api](https://github.com/jotaveX/meawdle-api) rodando localmente
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Instalação
 
-## Running end-to-end tests
+```bash
+# Clone o repositório
+git clone https://github.com/jotaveX/meawdle-front.git
+cd meawdle-front
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# Instale as dependências
+npm install
 
-## Further help
+# Inicie o servidor de desenvolvimento
+ng serve
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Acesse `http://localhost:4200`. A aplicação recarrega automaticamente a cada alteração nos arquivos fonte.
+
+### Scripts disponíveis
+
+| Comando | Descrição |
+|---|---|
+| `ng serve` | Dev server com hot reload |
+| `ng build` | Build de produção (output em `dist/`) |
+| `ng test` | Testes unitários via Karma |
+| `ng e2e` | Testes end-to-end |
+
+## 🖥️ Funcionalidades
+
+- Listagem de gatos disponíveis para adoção
+- Visualização de detalhes de cada gato (foto, nome, informações)
+- Link direto para página de adoção
+- Interface responsiva
+
+## 🔗 Projeto relacionado
+
+- **Backend:** [meawdle-api](https://github.com/jotaveX/meawdle-api) — API NestJS + Prisma + PostgreSQL que alimenta esta interface
+
+## 📸 Screenshots
+
+> _Em breve — adicione screenshots da aplicação rodando aqui._
+
+<!-- Descomente e substitua quando tiver as imagens:
+![Home](./screenshots/home.png)
+![Detalhes](./screenshots/details.png)
+-->
+
+## 📄 Licença
+
+Este projeto é open source.
+
+---
+
+Feito por [João Victor Piloni](https://github.com/jotaveX)
