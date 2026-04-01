@@ -8,11 +8,19 @@ import { environment } from '../config/environment';
   providedIn: 'root'
 })
 export class CatService {
-  private apiUrl = environment.apiUrl + '/cats'; // Ajuste a URL conforme seu backend
+  private apiUrl = environment.apiUrl + '/cats';
 
   constructor(private http: HttpClient) { }
 
   getCat(): Observable<Cat> {
     return this.http.get<Cat>(this.apiUrl + '/catOfTheDay');
+  }
+
+  getCatByDate(date: string): Observable<Cat> {
+    return this.http.get<Cat>(this.apiUrl + '/catByDate/' + date);
+  }
+
+  getAvailableDates(): Observable<string[]> {
+    return this.http.get<string[]>(this.apiUrl + '/availableDates');
   }
 }
