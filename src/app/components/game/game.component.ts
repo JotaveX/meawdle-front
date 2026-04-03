@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CatService } from '../../services/cat.service';
 import { Cat } from '../../models/cat.model';
 import { KeyboardComponent } from '../keyboard/keyboard.component';
+import { CalendarComponent } from '../calendar/calendar.component';
 
 interface LetterState {
   letter: string;
@@ -13,7 +14,7 @@ interface LetterState {
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [CommonModule, FormsModule, KeyboardComponent],
+  imports: [CommonModule, FormsModule, KeyboardComponent, CalendarComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.css'
 })
@@ -33,6 +34,7 @@ export class GameComponent implements OnInit {
   isToday: boolean = true;
   availableDates: string[] = [];
   todayCompleted: boolean = false;
+  showCalendar: boolean = false;
 
   // Mobile
   isMobile: boolean = false;
@@ -145,35 +147,10 @@ export class GameComponent implements OnInit {
     }
   }
 
-  goToPreviousDay(): void {
-    const idx = this.availableDates.indexOf(this.selectedDate);
-    if (idx > 0) {
-      this.selectedDate = this.availableDates[idx - 1];
-      this.loadCat();
-    }
-  }
-
-  goToNextDay(): void {
-    const idx = this.availableDates.indexOf(this.selectedDate);
-    if (idx < this.availableDates.length - 1) {
-      this.selectedDate = this.availableDates[idx + 1];
-      this.loadCat();
-    }
-  }
-
-  goToToday(): void {
-    this.selectedDate = this.getTodayStr();
+  onDateSelected(date: string): void {
+    this.selectedDate = date;
+    this.showCalendar = false;
     this.loadCat();
-  }
-
-  canGoPrevious(): boolean {
-    const idx = this.availableDates.indexOf(this.selectedDate);
-    return idx > 0;
-  }
-
-  canGoNext(): boolean {
-    const idx = this.availableDates.indexOf(this.selectedDate);
-    return idx < this.availableDates.length - 1 && this.availableDates[idx + 1] <= this.getTodayStr();
   }
 
   formatDate(dateStr: string): string {

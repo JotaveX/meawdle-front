@@ -11,18 +11,23 @@
       </div>
     </header>
 
-    <!-- Navegação entre dias (só aparece após completar o jogo de hoje) -->
+    <!-- Navegação por calendário (só aparece após completar o jogo de hoje) -->
     <div class="date-nav" *ngIf="todayCompleted">
-      <button class="nav-btn" (click)="goToPreviousDay()" [disabled]="!canGoPrevious()" title="Dia anterior">
-        ◀
-      </button>
-      <div class="date-display">
-        <span class="date-label">{{ formatDate(selectedDate) }}</span>
-        <button class="today-btn" *ngIf="!isToday" (click)="goToToday()">Ir para hoje</button>
+      <span class="date-label">{{ formatDate(selectedDate) }}</span>
+      <button class="cal-open-btn" (click)="showCalendar = true">Outros dias</button>
+    </div>
+
+    <!-- Modal do calendário -->
+    <div class="modal-overlay" *ngIf="showCalendar" (click)="showCalendar = false">
+      <div class="calendar-modal" (click)="$event.stopPropagation()">
+        <button class="modal-close" (click)="showCalendar = false">&times;</button>
+        <h2>Escolha um dia</h2>
+        <app-calendar
+          [availableDates]="availableDates"
+          [selectedDate]="selectedDate"
+          (dateSelected)="onDateSelected($event)">
+        </app-calendar>
       </div>
-      <button class="nav-btn" (click)="goToNextDay()" [disabled]="!canGoNext()" title="Próximo dia">
-        ▶
-      </button>
     </div>
 
     <div *ngIf="loading" class="status-block loading">

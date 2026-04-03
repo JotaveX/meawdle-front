@@ -1,0 +1,138 @@
+.calendar {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.month-label {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.03em;
+  color: #e8eaf6;
+}
+
+.cal-nav-btn {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #e8eaf6;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s;
+}
+.cal-nav-btn:hover:not(:disabled) {
+  background: rgba(163,98,255,0.15);
+  border-color: #a362ff;
+}
+.cal-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 36px);
+  justify-content: center;
+  gap: 2px;
+  margin-bottom: 4px;
+}
+
+.weekday {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: #8a8db0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 0;
+}
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 36px);
+  justify-content: center;
+  gap: 2px;
+}
+
+.day-cell {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: #7a7f9a;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: default;
+  transition: all 0.15s;
+  padding: 0;
+}
+
+.day-cell.other-month {
+  opacity: 0.2;
+}
+
+.day-cell.has-game {
+  color: #e8eaf6;
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.1);
+  cursor: pointer;
+}
+
+.day-cell.has-game:hover:not(:disabled) {
+  background: rgba(163,98,255,0.2);
+  border-color: #a362ff;
+}
+
+.day-cell.today {
+  border-color: #a362ff;
+  box-shadow: 0 0 0 1px rgba(163,98,255,0.3);
+}
+
+.day-cell.selected {
+  background: linear-gradient(135deg, #6c5ce7, #a362ff) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(163,98,255,0.4);
+}
+
+.day-cell.future {
+  opacity: 0.25;
+}
+
+.day-cell:disabled:not(.other-month):not(.future) {
+  color: #4a4d6a;
+}
+
+.today-btn {
+  display: block;
+  margin: 10px auto 0;
+  background: linear-gradient(135deg, #0b091a, #a362ff);
+  border: none;
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: box-shadow 0.2s;
+}
+.today-btn:hover {
+  box-shadow: 0 4px 16px rgba(163,98,255,0.35);
+}

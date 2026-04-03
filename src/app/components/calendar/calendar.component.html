@@ -1,0 +1,32 @@
+<div class="calendar">
+  <div class="calendar-header">
+    <button class="cal-nav-btn" (click)="prevMonth()">◀</button>
+    <span class="month-label">{{ monthLabel }}</span>
+    <button class="cal-nav-btn" (click)="nextMonth()" [disabled]="!canGoNextMonth()">▶</button>
+  </div>
+
+  <div class="weekdays">
+    <span *ngFor="let wd of weekDays" class="weekday">{{ wd }}</span>
+  </div>
+
+  <div class="days-grid">
+    <ng-container *ngFor="let week of weeks">
+      <button
+        *ngFor="let day of week"
+        class="day-cell"
+        [class.other-month]="!day.isCurrentMonth"
+        [class.today]="day.isToday"
+        [class.selected]="day.isSelected"
+        [class.has-game]="day.hasGame && day.isCurrentMonth"
+        [class.future]="day.isFuture"
+        [disabled]="!day.isCurrentMonth || day.isFuture || !day.hasGame"
+        (click)="selectDay(day)">
+        {{ day.day }}
+      </button>
+    </ng-container>
+  </div>
+
+  <button class="today-btn" *ngIf="selectedDate !== todayStr" (click)="goToToday()">
+    Ir para hoje
+  </button>
+</div>
