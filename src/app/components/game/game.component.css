@@ -291,6 +291,29 @@
 .victory h2 { color: #7bed9f; }
 .defeat h2 { color: #ff9aa2; }
 
+.adoption-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  color: #e8eaf6;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.adoption-button:hover {
+  background: rgba(163,98,255,0.15);
+  border-color: #a362ff;
+  box-shadow: 0 4px 16px rgba(163,98,255,0.25);
+  color: #fff;
+}
+
 /* Mobile: input invisível para teclado nativo */
 .mobile-hidden-input {
   position: absolute;
